@@ -32,4 +32,11 @@ def text_to_speech(text, voice=""):
 
 
 def openai_process_message(user_message):
-    return None
+    #Set the prompt for openai API
+    prompt = "\"Actua como un asistente personal. Vos podes responder preguntas, traducir sentencias, agregar noticias, y dar recomendaciones."+user_message+"\""
+    #Call the OpenAI API to process our prompt
+    openai_response = openai.Completion.create(model="text-davinci-003", prompt=prompt, max_tokens=4000)
+    print("openai response: ", openai_response)
+    #Parse the response to get the response text for our prompt
+    response_text = openai_response.choices[0].text
+    return response_text
