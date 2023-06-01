@@ -10,7 +10,7 @@ def speech_to_text(audio_binary):
     api_url = base_url+'/speech-to-text/api/v1/recognize'
     #Set up parameters for our HTTP request
     params = {
-        'model':'es-LA_Multimedia',
+        'model':'en-US_Multimedia',
     }
     #Set up the body of our HTTP request
     body = audio_binary
@@ -41,19 +41,19 @@ def text_to_speech(text, voice=""):
     }
     #Set the body of our HTTP request
     json_data ={
-        'text': text
+        'text': text,
     }
     #Send a HTTP Post request to watson text to speech service
-    response = requests.post(api_url,headers=headers,json=json_data)
+    response = requests.post(api_url,headers=headers, json=json_data)
     print('text to speech response:', response)
     return response.content
 
 
 def openai_process_message(user_message):
     #Set the prompt for openai API
-    prompt = "\"Actua como un asistente personal. Vos podes responder preguntas, traducir sentencias, agregar noticias, y dar recomendaciones."+user_message+"\""
+    prompt = "\"Act like a personal assistant. You can respond to questions, translate sentences, summarize news, and give recommendations. " + user_message + "\""
     #Call the OpenAI API to process our prompt
-    openai_response = openai.Completion.create(model="text-davinci-003", prompt=prompt, max_tokens=4000)
+    openai_response = openai.Completion.create(model="text-davinci-003", prompt=prompt,max_tokens=4000)
     print("openai response: ", openai_response)
     #Parse the response to get the response text for our prompt
     response_text = openai_response.choices[0].text
