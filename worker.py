@@ -1,7 +1,7 @@
 import openai
 import requests
 
-openai.api_key = "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"
+openai.api_key = "..."
 
 
 def speech_to_text(audio_binary):
