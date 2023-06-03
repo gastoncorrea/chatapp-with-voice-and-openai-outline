@@ -46,7 +46,7 @@ def process_prompt_route():
     #openai_response_speech = base64.b64encode(openai_response_speech).decode('utf-8')
     # Send a JSON response back to the user containing their message's response both in text and speech formats
     response = app.response_class(
-        response=json.dumps({"openaiResponseText": openai_response_text}),#, "openaiResponseSpeech": openai_response_speech}),
+        response=json.dumps({"openaiResponseText": openai_response_text}),# "openaiResponseSpeech": openai_response_speech}),
         status=200,
         mimetype='application/json'
     )
